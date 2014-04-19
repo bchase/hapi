@@ -23,13 +23,14 @@ describe Hapi::REST::Collection do
         its(:path_name) { should eq plural_name.underscore }
       end
 
-      describe '.format' do
-        its(:format) { should eq format }
-      end
+      # describe '.format' do
+      #   its(:format) { should eq format }
+      # end
 
       describe '.path' do
         let(:path_name) { collection.path_name }
-        its(:path) { should eq "/#{path_name}.#{format}"}
+        # its(:path) { should eq "/#{path_name}.#{format}"}
+        its(:path) { should eq "/#{path_name}"}
       end
 
       describe '.url' do

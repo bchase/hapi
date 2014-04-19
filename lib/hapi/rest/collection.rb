@@ -8,12 +8,13 @@ module Hapi::REST
       name.pluralize.underscore
     end
 
-    def self.format
-      'json'
-    end
+    # def self.format
+    #   'json'
+    # end
 
     def self.path
-      "/#{path_name}.#{format}"
+      # "/#{path_name}.#{format}"
+      "/#{path_name}"
     end
 
     def self.url
