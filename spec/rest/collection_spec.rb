@@ -31,16 +31,28 @@ describe Hapi::REST::Collection do
       end
     end
 
+    before do
+      # TODO
+      RestClient.stub(:get).
+        and_return(true)
+    end
+
     describe '.index' do
+      # TODO move to something like:
+      #   service.get path
+      #   service.cards.index
       it 'makes a GET request to .url' do
+        RestClient.
+          should_receive(:get).
+          with(collection.url)
+
+        collection.index
+      end
+
+      it 'instantiates objects of itself for each element in the JSON array result' do
         pending
       end
     end
-    # make request
-    #   index
-    #   get
-    
-    # store result
   end
 
   context 'HTTP parsing' do

@@ -15,5 +15,9 @@ module Hapi::REST
     def self.url
       service.url + path
     end
+
+    def self.index
+      json = RestClient.get url
+    end
   end
 end
