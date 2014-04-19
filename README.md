@@ -1,20 +1,24 @@
 # Hapi
 
-TODO: Write a gem description
+Quickly build Ruby clients for RESTful HTTP APIs
+
+## Under Construction
+
+This is presently an experimental project, only being used to consume a rudimentary API. As such, the gems constraints are as follows:
+
+1. makes no use of API keys
+2. JSON only
+3. RESTful GET actions only (index/show, list/read)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'hapi'
+    gem 'hapi', github: 'bchase/hapi'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install hapi
 
 ## Usage
 
