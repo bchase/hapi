@@ -4,12 +4,15 @@ describe Hapi::JSON::Object do
   let(:json_file) { File.open(File.expand_path('../../json/cards.json', __FILE__)) }
 
   let(:json)  { json_file.readlines.join }
-  let(:array) { JSON.parse json }
+
+  let(:array_json) { JSON.parse json }
 
   let(:klass) { Card = Class.new Hapi::JSON::Object }
-  let(:card)  { klass.new hash.last }
+  let(:card)  { klass.new array_json.last }
 
   # require 'pry'; binding.pry
+
+  subject { card }
 
   context 'string attribute value' do
     let(:name) { 'Aesthir Glider' }
@@ -25,7 +28,15 @@ describe Hapi::JSON::Object do
     let(:formats)  {
       {"commander"=>"legal", "legacy"=>"legal", "vintage"=>"legal"}
     }
+    its(:formats) { should be_a Hapi::JSON::Object }
     its(:formats) { should eq formats }
+  end
+
+  context 'objects in attribute arrays' do
+    let(:edition) { card.editions.last }
+    subject { edition }
+    require 'pry'
+    it { binding.pry; should be_a Hapi::JSON::Object }
   end
 
   # => {
