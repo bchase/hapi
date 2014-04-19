@@ -35,8 +35,7 @@ describe Hapi::JSON::Object do
   context 'objects in attribute arrays' do
     let(:edition) { card.editions.last }
     subject { edition }
-    require 'pry'
-    it { binding.pry; should be_a Hapi::JSON::Object }
+    it { should be_a Hapi::JSON::Object }
   end
 
   # => {

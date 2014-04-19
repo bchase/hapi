@@ -1,5 +1,5 @@
 module Hapi::REST
-  class Collection
+  class Collection < Hapi::JSON::Object
     def service
       @@service
     end
@@ -8,8 +8,12 @@ module Hapi::REST
       name.pluralize.underscore
     end
 
+    def self.format
+      'json'
+    end
+
     def self.path
-      "/#{path_name}"
+      "/#{path_name}.#{format}"
     end
 
     def self.url

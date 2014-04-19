@@ -6,9 +6,9 @@ require 'restclient'
 
 require 'hapi/version'
 
+require 'hapi/json'
 require 'hapi/service'
 require 'hapi/rest'
-require 'hapi/json'
 
 module Hapi
 end

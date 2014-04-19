@@ -15,15 +15,21 @@ describe Hapi::REST::Collection do
   subject { collection }
 
   context 'HTTP requests' do
+    let(:format) { 'json' }
+
     context 'pathing' do
       describe '.path_name' do
         let(:plural_name) { name.pluralize}
         its(:path_name) { should eq plural_name.underscore }
       end
 
+      describe '.format' do
+        its(:format) { should eq format }
+      end
+
       describe '.path' do
         let(:path_name) { collection.path_name }
-        its(:path) { should eq "/#{path_name}"}
+        its(:path) { should eq "/#{path_name}.#{format}"}
       end
 
       describe '.url' do
@@ -53,8 +59,5 @@ describe Hapi::REST::Collection do
         pending
       end
     end
-  end
-
-  context 'HTTP parsing' do
   end
 end
