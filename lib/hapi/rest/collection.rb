@@ -1,6 +1,6 @@
 module Hapi::REST
   class Collection < Hapi::JSON::Object
-    def service
+    def self.service
       @@service
     end
 
@@ -21,7 +21,9 @@ module Hapi::REST
     end
 
     def self.index
-      json = RestClient.get url
+      json  = RestClient.get url
+      array = JSON.parse json
+      array.map {|item| new item}
     end
   end
 end

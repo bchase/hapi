@@ -37,10 +37,13 @@ describe Hapi::REST::Collection do
       end
     end
 
+    let(:json_file) { File.open(File.expand_path('../../json/cards.json', __FILE__)) }
+    let(:json) { json_file.readlines.join }
+
     before do
       # TODO
       RestClient.stub(:get).
-        and_return(true)
+        and_return(json)
     end
 
     describe '.index' do
@@ -56,7 +59,7 @@ describe Hapi::REST::Collection do
       end
 
       it 'instantiates objects of itself for each element in the JSON array result' do
-        pending
+        collection.index.last.should be_a Hapi::JSON::Object
       end
     end
   end
