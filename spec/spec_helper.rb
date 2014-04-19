@@ -1,4 +1,4 @@
-require File.expand_path('../../lib/haip.rb', __FILE__)
+require File.expand_path('../../lib/hapi.rb', __FILE__)
 
 require 'rubygems'
 require 'rspec'
