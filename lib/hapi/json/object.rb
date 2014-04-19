@@ -16,22 +16,12 @@ module Hapi::JSON
       # to JSON::Object
       @data.each do |key, val|
         if val.is_a? Array and val.any?{|item| item.is_a? Hash}
-          array = val
-          array.map! {|item|
-            if item.is_a? Hash
-              Hapi::JSON::Object.new item 
-            else
-              item
-            end
-          }
+          val = Hapi::JSON::Array.new val
         end
       end
 
       super @data
     end
-#     def [](key)
-#       @data[key.to_s]
-#     end
 
     def method_missing(*args, &block)
       method_str = args.first.to_s

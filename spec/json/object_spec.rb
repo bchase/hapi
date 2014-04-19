@@ -25,7 +25,7 @@ describe Hapi::JSON::Object do
   end
 
   context 'hash attribute value' do
-    let(:formats)  {
+    let(:formats) {
       {"commander"=>"legal", "legacy"=>"legal", "vintage"=>"legal"}
     }
     its(:formats) { should be_a Hapi::JSON::Object }
@@ -37,12 +37,4 @@ describe Hapi::JSON::Object do
     subject { edition }
     it { should be_a Hapi::JSON::Object }
   end
-
-  # => {
-  #     "types"=>["artifact", "creature"],
-  #   "name"=>"Aesthir Glider",
-  # "formats"=>{"commander"=>"legal", "legacy"=>"legal", "vintage"=>"legal"},
-  #        "editions"=>
-  #          [{
-  #                                               "image_url"=>"https://image.deckbrew.com/mtg/multiverseid/3040.jpg",
 end
