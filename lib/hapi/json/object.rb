@@ -15,7 +15,7 @@ module Hapi::JSON
       # casts objects in attr arrays
       # to JSON::Object
       @data.each do |key, val|
-        if val.is_a? Array and val.any?{|item| item.is_a? Hash}
+        if val.is_a? ::Array and val.any?{|item| item.is_a? Hash}
           val = Hapi::JSON::Array.new val
         end
       end
