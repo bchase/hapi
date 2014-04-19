@@ -8,6 +8,7 @@ require 'hapi/version'
 
 require 'hapi/service'
 require 'hapi/rest'
+require 'hapi/json'
 
 module Hapi
 end
