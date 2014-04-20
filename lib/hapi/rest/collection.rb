@@ -23,6 +23,9 @@ module Hapi::REST
 
     def self.index
       json  = service.get path
+      # TODO 
+      #   use Hapi::JSON::Array
+      #   parse JSON there in .initialize
       array = JSON.parse json
       array.map {|item| new item}
     end
