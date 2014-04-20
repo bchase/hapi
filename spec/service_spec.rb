@@ -10,4 +10,26 @@ describe Hapi::Service do
   describe '#url' do
     its(:url) { should eq url }
   end
+
+  describe '#get' do
+    let(:json) { {a:'b'}.to_json }
+
+    let(:path) { '/foo/bar' }
+
+    before do
+      # TODO
+      RestClient.stub(:get).
+        and_return(json)
+    end
+
+    subject { service.get path }
+    it { should eq json }
+    it 'makes a GET request to the provided path using RestClient' do
+      RestClient.
+        should_receive(:get).
+        with(path)
+
+      service.get path
+    end
+  end
 end
