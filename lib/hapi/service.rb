@@ -3,7 +3,7 @@ module Hapi
   Service = Struct.new(:url) do
     # TODO could be done by delegation
     def get(path)
-      http_client.get path
+      http_client.get url + path
     end
 
   private

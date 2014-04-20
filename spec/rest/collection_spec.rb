@@ -48,9 +48,6 @@ describe Hapi::REST::Collection do
     end
 
     describe '.index' do
-      # TODO move to something like:
-      #   service.get path
-      #   service.cards.index
       it 'makes a GET request to .url' do
         RestClient.
           should_receive(:get).

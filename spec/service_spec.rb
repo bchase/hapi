@@ -11,6 +11,9 @@ describe Hapi::Service do
     its(:url) { should eq url }
   end
 
+  # TODO move to something like:
+  #   service.cards.index
+  #   ?
   describe '#get' do
     let(:json) { {a:'b'}.to_json }
 
@@ -27,7 +30,7 @@ describe Hapi::Service do
     it 'makes a GET request to the provided path using RestClient' do
       RestClient.
         should_receive(:get).
-        with(path)
+        with(url + path)
 
       service.get path
     end

@@ -22,7 +22,7 @@ module Hapi::REST
     end
 
     def self.index
-      json  = RestClient.get url
+      json  = service.get path
       array = JSON.parse json
       array.map {|item| new item}
     end
