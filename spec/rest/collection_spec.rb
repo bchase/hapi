@@ -56,6 +56,14 @@ describe Hapi::REST::Collection do
         collection.index
       end
 
+      it 'adds hash arguments as query params to request' do
+        RestClient.
+          should_receive(:get).
+          with(collection.url+"?page=1")
+
+        collection.index page: 1
+      end
+
       it 'instantiates objects of itself for each element in the JSON array result' do
         collection.index.last.should be_a Hapi::JSON::Object
       end
