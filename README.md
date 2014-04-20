@@ -22,11 +22,26 @@ And then execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+module MTG
+  class Card < Hapi::REST::Collection
+    def self.service
+      @@service ||= Hapi::Service.new 'https://api.deckbrew.com/mtg'
+    end
+  end
+end
+
+cards = MTG::Card.index page: 1
+
+card  = cards.first
+name  = card.name
+image = card.editions.last.image_url
+
+```
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/hapi/fork )
+1. Fork it ( http://github.com/bchase/hapi/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
