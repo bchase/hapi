@@ -1,5 +1,5 @@
 module Hapi::REST
-  class Collection < Hapi::JSON::Object
+  class Collection
     def self.service
       @@service
     end
@@ -25,11 +25,7 @@ module Hapi::REST
 
     def self.index(params=nil)
       json  = service.get path(params)
-      # TODO 
-      #   use Hapi::JSON::Array
-      #   parse JSON there in .initialize
-      array = JSON.parse json
-      array.map {|item| new item}
+      array = Hapi::JSON.parse json
     end
 
   protected

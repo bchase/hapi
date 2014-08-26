@@ -1,7 +1,7 @@
-require 'hapi/json/object'
-require 'hapi/json/array'
-
 module Hapi
   module JSON
+    def self.parse(json)
+      Fetching.from_json json
+    end
   end
 end
