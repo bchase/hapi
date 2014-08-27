@@ -41,12 +41,12 @@ module Hapi
     end
 
     def new_collection_class
-      Class.new Hapi::REST::Collection do
-        define_method :client do
-          self
-        end
+      client = self
 
-        private :client
+      Class.new Hapi::REST::Collection do
+        define_singleton_method :client do
+          client
+        end
       end
     end
   end

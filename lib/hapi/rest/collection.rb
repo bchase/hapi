@@ -30,6 +30,7 @@ module Hapi::REST
 
   protected
     def self.hash_to_query_params(hash)
+      # TODO AS Hash#to_param
       return '' unless hash.present?
       hash.to_a.map {|arr| 
         "#{arr[0]}=#{arr[1]}"
