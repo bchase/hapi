@@ -5,12 +5,7 @@ module Hapi
     def initialize
       @host        = URI.parse @@host
       @collections = @@collections
-      @collections.each do |col_sym|
-        class_name = col_sym.to_s.classify
-        klass      = Class.new Hapi::REST::Collection
-
-        self.class.parent.const_set class_name, klass
-      end
+      define_collection_classes
     end
 
     attr_reader :host, :collections
@@ -31,15 +26,31 @@ module Hapi
       @@collections = cols
     end
 
-  private
+    private
 
-    def index(resource_sym)
-      url = host + resource_sym.to_s
-      `curl #{url}`
+    def define_collection_classes
+      @collections.each do |col_sym|
+        self.class.parent.const_set \
+          collection_class_name(col_sym), 
+          new_collection_class
+      end
+    end
+
+    def collection_class_name(col_sym)
+      col_sym.to_s.classify
+    end
+
+    def new_collection_class
+      Class.new Hapi::REST::Collection do
+        define_method :client do
+          self
+        end
+
+        private :client
+      end
     end
   end
 end
-
 
 
 
