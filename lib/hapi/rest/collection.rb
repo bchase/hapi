@@ -1,7 +1,7 @@
 module Hapi::REST
   class Collection
-    def self.service_url
-      client.host
+    def self.service
+      client.service
     end
 
     def self.path_name
@@ -20,7 +20,7 @@ module Hapi::REST
     end
 
     def self.url
-      service_url + path
+      service.url + path
     end
 
     def self.index(params=nil)

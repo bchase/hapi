@@ -4,15 +4,18 @@ module Hapi
   class Client
     def initialize
       @host        = URI.parse @@host
+      @service     = Hapi::Service.new host
       @collections = @@collections
       define_collection_classes
     end
 
-    attr_reader :host, :collections
+    attr_reader :host, :service, :collections
 
-    def method_missing(method, *args, &block)
-      if collections.include? method
-        index method
+    def method_missing(collection, *args, &block)
+      if collections.include? collection
+        # def get_class_by_collection_name
+        klass = collection_class_name(collection).constantize
+        klass.index
       else
         super
       end
