@@ -1,14 +1,7 @@
 module Hapi::JSON
   class Object < HashWithIndifferentAccess
-    def initialize(json_or_hash)
-      case json_or_hash
-      when String
-        @json = json_or_hash
-        @data = ActiveSupport::JSON.parse @json
-      when Hash
-        @data = json_or_hash
-      end
-
+    def initialize(hash)
+      @data = hash
       @keys = @data.keys.map &:to_s
 
       # TODO make/move to JSON::Array
