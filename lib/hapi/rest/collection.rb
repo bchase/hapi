@@ -28,9 +28,8 @@ module Hapi::REST
       array = Hapi::JSON.parse json
     end
 
-    def self.all(params=nil)
-      index params
-    end
+    self.singleton_class.send :alias_method, :all, :index
+    self.singleton_class.send :alias_method, :list, :index
 
   protected
     def self.hash_to_query_params(hash)
